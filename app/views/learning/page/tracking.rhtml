@@ -1,0 +1,6 @@
+<div class='cms_form'>
+<%  paragraph_options_form_for :tracking do |f| -%>
+  <%= f.select :learning_module_id, LearningModule.select_options %>
+  <%= f.text_field :goal_number %>
+<% end -%>
+</div>
