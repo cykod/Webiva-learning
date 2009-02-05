@@ -45,7 +45,7 @@
     <% if luser = @learning_users[mod.id] -%>
     <div>
         <% if luser.started? -%>
-          <%= @user.name %> is currently at Section: <%= luser.last_section_position %>, Lesson: <%= luser.last_lesson_position %>:<b><%= luser.last_lesson.title %> </b>
+          <%= @user.name %> is currently at Section: <%= luser.last_section_position %>, Lesson: <%= luser.last_lesson_position %>:<b><%= luser.last_lesson.title %> </b> (<%= link_to "See Details", :controller => '/learning/track', :action => 'user', :path => [ mod.id,luser.id ]  %>)
         <%  else -%>
           <%= @user.name %> has not yet started this module
         <% end -%>
