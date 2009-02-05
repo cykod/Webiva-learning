@@ -33,8 +33,10 @@ class Learning::AdminController < ModuleController
   
   def self.get_modules_info
     LearningModule.find(:all,:order =>'name').collect do |mod|
-      { :name => mod.name, :url => {:controller => '/learning/manage',:action => 'view', :path => mod.id },:permission => 'learning_manage' }
-    end
+      [ { :name => mod.name, :url => {:controller => '/learning/manage',:action => 'view', :path => mod.id },:permission => 'learning_manage' },
+        { :name => mod.name + " Users", :url => {:controller => '/learning/track',:action => 'view', :path => mod.id },:permission => 'learning_manage' },
+      ]
+    end.flatten
   end
 
  

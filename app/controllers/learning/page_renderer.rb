@@ -1,4 +1,4 @@
-
+require 'open_flash_chart_2'
 
 class Learning::PageRenderer < ParagraphRenderer
 

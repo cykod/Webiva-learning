@@ -5,8 +5,8 @@ class LearningUser < DomainModel
   belongs_to :learning_module
   belongs_to :end_user
   
-  belongs_to :last_lesson, :class_name => 'LearningLesson'
-  belongs_to :next_lesson, :class_name => 'LearningLesson'
+  belongs_to :last_lesson, :class_name => 'LearningLesson', :foreign_key => 'last_lesson_id'
+  belongs_to :next_lesson, :class_name => 'LearningLesson', :foreign_key => 'next_lesson_id'
   
   has_many :learning_user_lessons
   
