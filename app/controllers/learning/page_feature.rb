@@ -122,7 +122,46 @@ class Learning::PageFeature < ParagraphFeature
         end
         
       end      
-      c.value_tag('content') { |t| data[:lesson].content_html }
+      c.value_tag('content') do |tag| 
+        media_files = data[:lesson].image_list_arr
+        tag.locals.entry = data[:lesson]
+        txt = data[:lesson].content_html.to_s.gsub(/\%\%MEDIA([0-9]+)(,([0-9]+)x([0-9]+)){0,1}\%\%/) do |mtch|
+          file_id = media_files[$1.to_i-1]
+          med = DomainFile.find_by_id(file_id)
+          if med
+          ext = med.extension.to_s.downcase
+          
+          case ext
+          when 'mp3'
+            width = ($3 || 320).to_i
+           "<div id='learning_media_#{tag.locals.entry.id}_#{$1}'></div>
+            <script>
+              var so = new SWFObject('/javascripts/jw_player/mp3player.swf','mpl','#{width}','20','7');
+              so.addVariable('file','#{med.url}');
+              so.addVariable('playlist','false');
+              so.addVariable('autostart','false');
+              so.write('learning_media_#{tag.locals.entry.id}_#{$1}');
+            </script>"
+          when 'flv'
+           width = ($3 || 320).to_i
+           height = ($4 || 260).to_i
+           "<div id='learning_media_#{tag.locals.entry.id}_#{$1}'></div>
+            <script>
+              var so = new SWFObject('/javascripts/jw_player/mediaplayer.swf','mpl','#{width}','#{height}','7');
+              so.addVariable('file','#{med.url}');
+              so.addVariable('autostart','false');
+              so.write('learning_media_#{tag.locals.entry.id}_#{$1}');
+            </script>"
+          else
+            "<a href='#{med.url}'>Download</a>"
+          end
+        else
+          ''
+        end
+        end
+        
+        txt
+      end
       
       c.post_button_tag('not_started:start_button') { |t| '?learning=start' }
     end

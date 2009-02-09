@@ -21,6 +21,9 @@ class LearningLesson < DomainModel
     generate_email_html
   end
   
+  def image_list_arr
+    self.image_list.to_s.split(",").select { |elm| !elm.blank? }
+  end
   
 
   
