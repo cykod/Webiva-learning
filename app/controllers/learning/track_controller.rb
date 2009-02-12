@@ -12,7 +12,7 @@ class Learning::TrackController < ModuleController
   
   active_table :learning_users_table, LearningUser, 
       [ :check, 
-        hdr(:string,'end_users.name',:label => 'User'),
+        hdr(:string,'end_users.full_name',:label => 'User'),
         hdr(:string,'learning_lessons.title',:label => 'Last Lesson'),
         hdr(:number,'last_section_position',:label => 'Sec#'),
         hdr(:number,'last_lesson_position',:label => 'Les#'),
