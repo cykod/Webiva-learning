@@ -46,6 +46,8 @@ class LearningUser < DomainModel
           :next_lesson_at => Time.now + spacing.minutes,
           :lesson_viewed => false
         )
+    else
+      self.update_attributes(:finished => true)
     end
     
     self.reload
@@ -74,7 +76,7 @@ class LearningUser < DomainModel
   # Advance to the next module and send an email out as well
   def activate_module
     next_lesson = advance_module
-    if self.learning_module.email_template
+    if next_lesson && self.learning_module.email_template
       vars = next_lesson.attributes
       vars[:lesson_name] = next_lesson.title
       self.learning_module.email_template.deliver_to_user(self.end_user, vars )
