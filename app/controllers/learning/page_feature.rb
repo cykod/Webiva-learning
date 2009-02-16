@@ -95,7 +95,7 @@ class Learning::PageFeature < ParagraphFeature
           
           case ext
           when 'mp3'
-            width = (tag.attr['width'] || 320).to_i
+            width = (tag.attr['width'] || 420).to_i
            "<div id='learning_media_#{tag.locals.entry.id}'></div>
             <script>
               var so = new SWFObject('/javascripts/jw_player/mp3player.swf','mpl','#{width}','20','7');
@@ -105,8 +105,8 @@ class Learning::PageFeature < ParagraphFeature
               so.write('learning_media_#{tag.locals.entry.id}');
             </script>"
           when 'flv'
-           width = (tag.attr['width'] || 320).to_i
-           height = (tag.attr['height'] || 260).to_i
+           width = (tag.attr['width'] || 420).to_i
+           height = (tag.attr['height'] || 280).to_i
            "<div id='learning_media_#{tag.locals.entry.id}'></div>
             <script>
               var so = new SWFObject('/javascripts/jw_player/mediaplayer.swf','mpl','#{width}','#{height}','7');
@@ -133,7 +133,7 @@ class Learning::PageFeature < ParagraphFeature
           
           case ext
           when 'mp3'
-            width = ($3 || 320).to_i
+            width = ($3 || 420).to_i
            "<div id='learning_media_#{tag.locals.entry.id}_#{$1}'></div>
             <script>
               var so = new SWFObject('/javascripts/jw_player/mp3player.swf','mpl','#{width}','20','7');
@@ -143,8 +143,8 @@ class Learning::PageFeature < ParagraphFeature
               so.write('learning_media_#{tag.locals.entry.id}_#{$1}');
             </script>"
           when 'flv'
-           width = ($3 || 320).to_i
-           height = ($4 || 260).to_i
+           width = ($3 || 420).to_i
+           height = ($4 || 280).to_i
            "<div id='learning_media_#{tag.locals.entry.id}_#{$1}'></div>
             <script>
               var so = new SWFObject('/javascripts/jw_player/mediaplayer.swf','mpl','#{width}','#{height}','7');
