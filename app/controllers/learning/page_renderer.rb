@@ -131,7 +131,7 @@ class Learning::PageRenderer < ParagraphRenderer
   
   def tracking
   
-    @options = paragraph_options(:lesson_list)
+    @options = paragraph_options(:tracking)
     @mod = LearningModule.find_by_id(@options.learning_module_id)
     
     unless @mod 
@@ -159,7 +159,7 @@ class Learning::PageRenderer < ParagraphRenderer
     
       
     
-    @graph = ofc2(190,200,"website/learning/page/tracking_widget/#{@mod.id}")
+    @graph = ofc2(190,200,"website/learning/page/tracking_widget/#{@mod.id}/#{@options.goal_number}")
     
     now = Time.now
     @dates =  (1..3).to_a.map do |dt| 

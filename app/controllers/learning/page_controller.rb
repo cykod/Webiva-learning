@@ -48,7 +48,7 @@ class Learning::PageController < ParagraphController
     end
     
     @tracking_data = @lusr.tracking.tracking_data(goal,7)
-    vals =    (@tracking_data||[]).map { |elm| elm[1].to_i}
+    vals =    (@tracking_data||[]).map { |elm| elm[1].to_f}
  
      line_1 = OFC2::LineDot.new  
      line_1.values= vals
@@ -58,7 +58,7 @@ class Learning::PageController < ParagraphController
      line_1.colour = '#7c8d21'
    
      y = OFC2::YAxis.new  
-     y.set_range(0, (vals.max||0)+1000, 500)  
+     y.set_range(0, (vals.max||0)*1.25, 500)  
      y.labels = ['']
      y.tick_length = 10
      y.grid_colour = '#ffffff'
