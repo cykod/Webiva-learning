@@ -34,6 +34,9 @@ class LearningModule < DomainModel
   
   def create_module_user(end_user)
     LearningUser.create(:end_user_id => end_user.id, :learning_module_id => self.id)
+    if !self.activation_tags.blank?
+       end_user.tag_names_add(self.activation_tags) unless self.activation_tags.blank?
+    end
   end
   
   def first_lesson
