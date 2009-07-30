@@ -159,7 +159,7 @@ class Learning::PageRenderer < ParagraphRenderer
     
       
     
-    @graph = ofc2(190,200,"website/learning/page/tracking_widget/#{@mod.id}/#{@options.goal_number}")
+    @graph = ofc2(190,200,"website/learning/page/tracking_widget/#{@mod.id}/#{@options.goal_number}/#{@options.graph_type}")
     
     now = Time.now
     @dates =  (1..3).to_a.map do |dt| 

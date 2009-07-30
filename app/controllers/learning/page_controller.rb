@@ -23,7 +23,9 @@ class Learning::PageController < ParagraphController
   end
   
   class TrackingOptions < HashModel
-    attributes :learning_module_id => nil, :goal_number => 0
+    attributes :learning_module_id => nil, :goal_number => 0, :graph_type => 'line'
+
+    
     
   end
   
@@ -35,22 +37,25 @@ class Learning::PageController < ParagraphController
   
   def tracking_widget
  
-     title = OFC2::Title.new( '', "{font-size: 12px; color: #7c8d21; text-align: center;}")
+     title = OFC2::Title.new( '', "{font-s1ize: 12px; color: #7c8d21; text-align: center;}")
  
     @mod = LearningModule.find_by_id(params[:path][0])
     goal = params[:path][1].to_i
+    graph = params[:path][2].to_s
     
     @lusr = @mod.module_user(myself) if @mod
+
+    graph_classes = { 'line' => OFC2::LineDot, 'glass_bar' => OFC2::BarGlass }
     
-    unless @lusr
+    unless @lusr && graph_classes[graph]
       render :nothing => true 
       return
     end
     
     @tracking_data = @lusr.tracking.tracking_data(goal,7)
     vals =    (@tracking_data||[]).map { |elm| elm[1].to_f}
- 
-     line_1 = OFC2::LineDot.new  
+
+     line_1 = graph_classes[graph].new
      line_1.values= vals
      line_1.halo_size= 1  
      line_1.width= 2  
