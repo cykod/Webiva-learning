@@ -29,7 +29,7 @@ class LearningLesson < DomainModel
   
   def generate_content_html
      begin ## Throw away
-      txt = self.image_substitute(self.content)
+       txt = self.image_substitute(self.content)
       self.content_html = Maruku.new(txt).to_html
     rescue
       self.content_html = 'Invalid Markdown'.t

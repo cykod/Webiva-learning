@@ -32,6 +32,8 @@
 
 <% action_panel do |p| -%>
   <%= p.link 'New Section', :action => 'section', :path => [ @mod.id ], :icon =>'add.gif' %>
+  <%= p.link 'Configure Module', :action => 'create', :path => [ @mod.id], :icon => 'configure.gif' %> 
+  
 <% end -%>
 
 <hr/>

@@ -4,7 +4,7 @@ class Learning::PageFeature < ParagraphFeature
 
   feature :learning_page_module_display, :default_feature => <<-FEATURE
   <cms:active>
-    <cms:page_link>Goto your program!</cms:page_link>
+    <cms:page_link>Goto your <cms:name/> program!</cms:page_link>
   </cms:active>
   <cms:not_active>
     <cms:page_link>Buy this program!</cms:page_link>
@@ -16,6 +16,7 @@ class Learning::PageFeature < ParagraphFeature
   def learning_page_module_display_feature(data)
     webiva_feature(:learning_page_module_display) do |c|
       c.expansion_tag('active') { |c| data[:lusr] }
+      c.value_tag('name') { |c| data[:mod].name }
       c.link_tag('active:page') { |c| data[:options].active_page_url }
       c.link_tag('not_active:page') { |c| data[:options].inactive_page_url }
     end
