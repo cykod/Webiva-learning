@@ -57,7 +57,7 @@ class LearningLesson < DomainModel
         url = full_url
       else
         df = DomainFile.find_by_file_path("/" + image_path)
-        url = df ? df.url(size) : "/images/spacer.gif"
+        url = Configuration.domain_link(df ? df.url(size) : "/images/spacer.gif")
       end
       "![#{alt_text}](#{url}"
     end
