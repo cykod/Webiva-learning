@@ -47,7 +47,7 @@ class Learning::PageFeature < ParagraphFeature
       c.expansion_tag('started') { |t| data[:started] }
       c.loop_tag('started:section') { |t| t.attr['reverse'] ? data[:sections].reverse : data[:sections] }
         c.attribute_tags('started:section',%w(name)) { |t| t.locals.section }
-        c.loop_tag('section:lesson') { |t| t.attr['reverse'] ?  t.locals.section.learning_lessons.reverse : t.locals.section.learning_lessons }
+        c.loop_tag('section:lesson') { |t| lessons = t.locals.section.learning_lessons.find(:all,:order => 'learning_lessons.position');  t.attr['reverse'] ?  lessons.reverse : lessons }
         c.attribute_tags('started:section:lesson',%w(title short_title)) { |t| t.locals.lesson }
         c.link_tag('started:section:lesson') { |t| data[:page_url] + "/" + t.locals.lesson.id.to_s }
         c.expansion_tag('section:lesson:active') { |t|  data[:lusr].active_lesson?(t.locals.lesson) }

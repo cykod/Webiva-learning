@@ -117,7 +117,9 @@ class Learning::PageRenderer < ParagraphRenderer
       end
     end
     
-    @lesson = @lusr.last_lesson unless @lesson
+    if @lusr
+      @lesson = @lusr.last_lesson unless @lesson
+    end
     
     if @lesson
       @lusr.view_lesson(@lesson)

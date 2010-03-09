@@ -3,7 +3,7 @@
 class LearningModule < DomainModel
 
 
-  has_many :learning_lessons
+  has_many :learning_lessons, :order => 'learning_lessons.position'
   has_many :learning_sections, :order => 'learning_sections.position'
   has_many :learning_users
   

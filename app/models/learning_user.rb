@@ -36,7 +36,7 @@ class LearningUser < DomainModel
   def advance_module
     next_lesson = self.learning_module.next_lesson(self.last_lesson)
     
-    if next_lesson
+    if next_lesson && next_lesson.learning_section
       spacing = next_lesson.spacing_override_minutes.to_i > 0 ? next_lesson.spacing_override_minutes : (self.learning_module.spacing_minutes || 1440)
       self.update_attributes(
           :last_section_position => next_lesson.learning_section.position,
