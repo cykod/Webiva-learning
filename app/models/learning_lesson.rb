@@ -4,7 +4,7 @@ class LearningLesson < DomainModel
 
   belongs_to :learning_module
   belongs_to :learning_section
-  acts_as_list :scope => 'learning_section_id'
+  acts_as_list :scope => :learning_section_id
   
   belongs_to :media_file, :class_name => 'DomainFile'
   belongs_to :image_file, :class_name => 'DomainFile'

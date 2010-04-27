@@ -46,8 +46,8 @@ class LearningModule < DomainModel
   
   def next_lesson(lesson)
     pos = lesson.position
-    if lesson.learning_section.learning_lessons.length > pos
-      lesson.learning_section.learning_lessons[pos]
+    if next_less = lesson.learning_section.learning_lessons.find(:first,:conditions => ["position > ?",pos],:order => "position")
+      next_less
     else
       sec_pos = lesson.learning_section.position
       if self.learning_sections.count > sec_pos
