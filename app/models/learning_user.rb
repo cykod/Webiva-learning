@@ -81,6 +81,7 @@ class LearningUser < DomainModel
       vars[:lesson_name] = next_lesson.title
       self.learning_module.email_template.deliver_to_user(self.end_user, vars )
     end
+    next_lesson
   end
   
   def view_lesson(lesson,data = {})
@@ -93,9 +94,10 @@ class LearningUser < DomainModel
     user_lesson.views ||= 0
     
     user_lesson.update_attributes(:last_view_at => now,:views => user_lesson.views + 1)
-    
+
+    self.reload(:lock => true)
     self.last_view_at = now
-    self.lesson_viewed = true if lesson.id == self.last_lesson_id
+    self.lesson_viewed = true
     self.first_warning_at = now + self.learning_module.first_warning_days.days
     self.last_warning_at = now + self.learning_module.last_warning_days.days
     self.save
