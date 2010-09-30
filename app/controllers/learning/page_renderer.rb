@@ -1,4 +1,4 @@
-require 'open_flash_chart_2'
+# require 'open_flash_chart_2'
 
 class Learning::PageRenderer < ParagraphRenderer
 
@@ -26,7 +26,7 @@ class Learning::PageRenderer < ParagraphRenderer
       @started = @lusr.started? 
       sections = @lusr.visible_sections if @started
     end
-    
+
     
     data = { :started => @started, :user => myself, :lusr => @lusr, :sections => sections, :page_url => site_node.node_path  }
     
@@ -59,6 +59,7 @@ class Learning::PageRenderer < ParagraphRenderer
       end
     end
     
+    require_js('/components/learning/javascripts/swfobject.js')
     data = { :mod => @mod, :lusr => @lusr, :user => myself, :options => @options }
     
     render_paragraph :text => learning_page_module_display_feature(data)
@@ -126,6 +127,7 @@ class Learning::PageRenderer < ParagraphRenderer
     end
     @started = @lusr.started?
     data = { :started => @started, :user => myself, :lesson => @lesson, :page_url => site_node.node_path }
+    require_js('/components/learning/javascripts/swfobject.js')
     
     render_paragraph :text => learning_page_lesson_feature(data)
   end
@@ -177,6 +179,7 @@ class Learning::PageRenderer < ParagraphRenderer
     end
     
     require_js('prototype')
+    require_js('/components/learning/javascripts/swfobject.js')
     
     render_paragraph :text => output
   end

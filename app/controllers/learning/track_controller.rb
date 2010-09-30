@@ -77,6 +77,7 @@ class Learning::TrackController < ModuleController
     @lmod.goals.each_with_index do |goal,idx|
       @graphs << [goal.humanize, ofc2(800,200,"website/learning/track/widget/#{@lmod.id}/#{idx}/#{@user.id}") ] 
     end
+    require_js('/components/learning/javascripts/swfobject.js')
     
   end
   

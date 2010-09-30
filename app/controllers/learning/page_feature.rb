@@ -99,7 +99,7 @@ class Learning::PageFeature < ParagraphFeature
             width = (tag.attr['width'] || 420).to_i
            "<div id='learning_media_#{tag.locals.entry.id}'></div>
             <script>
-              var so = new SWFObject('/javascripts/jw_player/mp3player.swf','mpl','#{width}','20','7');
+              var so = new SWFObject('/components/learning/javascripts/jw_player/mp3player.swf','mpl','#{width}','20','7');
               so.addVariable('file','#{med.url}');
               so.addVariable('playlist','false');
               so.addVariable('autostart','false');
@@ -110,7 +110,7 @@ class Learning::PageFeature < ParagraphFeature
            height = (tag.attr['height'] || 280).to_i
            "<div id='learning_media_#{tag.locals.entry.id}'></div>
             <script>
-              var so = new SWFObject('/javascripts/jw_player/mediaplayer.swf','mpl','#{width}','#{height}','7');
+              var so = new SWFObject('/components/learning/javascripts/jw_player/mediaplayer.swf','mpl','#{width}','#{height}','7');
               so.addVariable('file','#{med.url}');
               so.addVariable('autostart','false');
               so.write('learning_media_#{tag.locals.entry.id}');
@@ -137,7 +137,7 @@ class Learning::PageFeature < ParagraphFeature
             width = ($3 || 420).to_i
            "<div id='learning_media_#{tag.locals.entry.id}_#{$1}'></div>
             <script>
-              var so = new SWFObject('/javascripts/jw_player/mp3player.swf','mpl','#{width}','20','7');
+              var so = new SWFObject('/components/learning/javascripts/jw_player/mp3player.swf','mpl','#{width}','20','7');
               so.addVariable('file','#{med.url}');
               so.addVariable('playlist','false');
               so.addVariable('autostart','false');
@@ -148,7 +148,7 @@ class Learning::PageFeature < ParagraphFeature
            height = ($4 || 280).to_i
            "<div id='learning_media_#{tag.locals.entry.id}_#{$1}'></div>
             <script>
-              var so = new SWFObject('/javascripts/jw_player/mediaplayer.swf','mpl','#{width}','#{height}','7');
+              var so = new SWFObject('/components/learning/javascripts/jw_player/mediaplayer.swf','mpl','#{width}','#{height}','7');
               so.addVariable('file','#{med.url}');
               so.addVariable('autostart','false');
               so.write('learning_media_#{tag.locals.entry.id}_#{$1}');
