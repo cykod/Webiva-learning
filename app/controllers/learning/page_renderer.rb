@@ -8,6 +8,16 @@ class Learning::PageRenderer < ParagraphRenderer
   paragraph :lesson
   paragraph :tracking, :ajax => true
   paragraph :module_display
+  paragraph :mylessons
+
+  def mylessons
+    @mods = LearningModule.all
+
+    @lusrs =  @mods.map { |mod| mod.module_user(myself) }.compact
+
+    data = { :modules => @lusrs }
+    render_paragraph :text => learning_page_mylessons_feature(data)
+  end
   
   def lesson_list
   

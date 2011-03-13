@@ -9,6 +9,7 @@ class Learning::PageController < ParagraphController
   
   editor_for :tracking, :name => "Tracking Widget", :features => [:learning_page_tracking]
   editor_for :module_display, :name => 'Module Display',  :features => [ :learning_page_module_display ]
+  editor_for :mylessons, :name => 'My Lessons', :feature => :learning_page_mylessons, :no_options => true
   
   user_actions :tracking_widget
 

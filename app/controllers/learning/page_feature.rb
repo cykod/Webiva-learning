@@ -1,6 +1,24 @@
 
 class Learning::PageFeature < ParagraphFeature
 
+  feature :learning_page_mylessons, :default_feature => <<-FEATURE
+  <cms:lessons>
+    <ul>
+    <cms:lesson>
+      <li><cms:link><cms:name/></cms:link></li>
+    </cms:lesson>
+    </ul>
+  </cms:lessons>
+  FEATURE
+
+  def learning_page_mylessons_feature(data)
+    webiva_feature(:learning_page_mylessons) do |c|
+      c.loop_tag('lesson') { |t| data[:modules] }
+      c.link_tag('lesson:') { |t| t.locals.lesson.learning_module.page_url }
+      c.value_tag('lesson:name') { |t| t.locals.lesson.learning_module.name }
+    end
+  end
+
 
   feature :learning_page_module_display, :default_feature => <<-FEATURE
   <cms:active>

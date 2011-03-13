@@ -3,6 +3,7 @@
 <div class='admin_content'>
 <% admin_form_for :learning_module, @learning_module do |f| -%>
   <%= f.text_field :name %>
+  <%= f.url_selector :page_url %>
   <%= f.text_area :description %>
   <%= f.radio_buttons :hourly, [['Yes',true],['No',false]] %>
   <%= f.text_field :spacing_minutes, :label => 'Lesson spacing', :description => 'Length of time between lesson activation (in minutes)' %>
